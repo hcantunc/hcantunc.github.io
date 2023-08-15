@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>1 | Academic</title>
+    <title>1 | </title>
     <link>https://hcantunc.github.io/publication-type/1/</link>
       <atom:link href="https://hcantunc.github.io/publication-type/1/index.xml" rel="self" type="application/rss+xml" />
     <description>1</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Mon, 01 Jul 2013 00:00:00 +0000</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Thu, 01 Jun 2023 00:00:00 +0000</lastBuildDate>
     <image>
       <url>https://hcantunc.github.io/media/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_3.png</url>
       <title>1</title>
@@ -13,22 +13,51 @@
     </image>
     
     <item>
-      <title>An example conference paper</title>
-      <link>https://hcantunc.github.io/publication/conference-paper/</link>
-      <pubDate>Mon, 01 Jul 2013 00:00:00 +0000</pubDate>
-      <guid>https://hcantunc.github.io/publication/conference-paper/</guid>
-      <description>&lt;div class=&#34;alert alert-note&#34;&gt;
-  &lt;div&gt;
-    Click the &lt;em&gt;Cite&lt;/em&gt; button above to demo the feature to enable visitors to import publication metadata into their reference management software.
-  &lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;alert alert-note&#34;&gt;
-  &lt;div&gt;
-    Create your slides in Markdown - click the &lt;em&gt;Slides&lt;/em&gt; button to check out the example.
-  &lt;/div&gt;
-&lt;/div&gt;
-&lt;p&gt;Supplementary notes can be added here, including &lt;a href=&#34;https://wowchemy.com/docs/writing-markdown-latex/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;code, math, and images&lt;/a&gt;.&lt;/p&gt;
-</description>
+      <title>Optimal Reads-From Consistency Checking for C11-Style Memory Models</title>
+      <link>https://hcantunc.github.io/publication/pldi23-c11/</link>
+      <pubDate>Thu, 01 Jun 2023 00:00:00 +0000</pubDate>
+      <guid>https://hcantunc.github.io/publication/pldi23-c11/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Sound Dynamic Deadlock Prediction in Linear Time</title>
+      <link>https://hcantunc.github.io/publication/pldi23-deadlock/</link>
+      <pubDate>Thu, 01 Jun 2023 00:00:00 +0000</pubDate>
+      <guid>https://hcantunc.github.io/publication/pldi23-deadlock/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>A Language-Based Causal Model for Safety</title>
+      <link>https://hcantunc.github.io/publication/tase22/</link>
+      <pubDate>Fri, 01 Jul 2022 00:00:00 +0000</pubDate>
+      <guid>https://hcantunc.github.io/publication/tase22/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>DyNetKAT: An Algebra of Dynamic Networks</title>
+      <link>https://hcantunc.github.io/publication/fossacs22/</link>
+      <pubDate>Fri, 01 Apr 2022 00:00:00 +0000</pubDate>
+      <guid>https://hcantunc.github.io/publication/fossacs22/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>A Tree Clock Data Structure for Causal Orderings in Concurrent Executions</title>
+      <link>https://hcantunc.github.io/publication/asplos22/</link>
+      <pubDate>Tue, 01 Mar 2022 00:00:00 +0000</pubDate>
+      <guid>https://hcantunc.github.io/publication/asplos22/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Detection of e-Commerce Anomalies Using LSTM-Recurrent Neural Networks</title>
+      <link>https://hcantunc.github.io/publication/data19/</link>
+      <pubDate>Mon, 01 Jul 2019 00:00:00 +0000</pubDate>
+      <guid>https://hcantunc.github.io/publication/data19/</guid>
+      <description></description>
     </item>
     
   </channel>
