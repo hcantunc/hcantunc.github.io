@@ -30,7 +30,7 @@ const maxConferenceSize = 12
 const paddingLength = Math.max(maxConferenceSize - post.data.conference.length, 0);
 const paddedConference = post.data.conference + ' '.repeat(paddingLength);
 
-const getFieldLink = (post, button) => {
+const getFieldLink = (post : any, button : any) => {
   if (!post.data) return null;
 
   switch (button.label) {
