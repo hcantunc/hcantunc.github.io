@@ -1,0 +1,94 @@
+---
+import type { HTMLTag, Polymorphic } from "astro/types";
+import type { CollectionEntry } from "astro:content";
+
+import { getPostSortDate } from "@/data/post";
+
+import FormattedDate from "../FormattedDate.astro";
+import { Icon } from "astro-icon/components";
+
+type Props<Tag extends HTMLTag> = Polymorphic<{ as: Tag }> & {
+	post: CollectionEntry<"post">;
+	withDesc?: boolean;
+};
+
+const { as: Tag = "div", post, withDesc = false } = Astro.props;
+const postDate = getPostSortDate(post);
+
+const buttons = [
+  { label: 'PDF', link: '#' },
+  { label: 'Artifact', link: '#' },
+  { label: 'Code', link: '#' },
+  { label: 'Data', link: '#' },
+  { label: 'Slides', link: '#' },
+  { label: 'Video', link: '#' },
+  { label: 'Cite', link: '#' },
+];
+
+
+const maxConferenceSize = 12
+const paddingLength = Math.max(maxConferenceSize - post.data.conference.length, 0);
+const paddedConference = post.data.conference + ' '.repeat(paddingLength);
+
+const getFieldLink = (post, button) => {
+  if (!post.data) return null;
+
+  switch (button.label) {
+    case 'PDF':
+      return post.data.pdf;
+    case 'Cite':
+      return post.data.cite;
+    case 'Artifact':
+      return post.data.artifact;
+    case 'Code':
+      return post.data.code;
+    case 'Data':
+      return post.data.data;
+    case 'Slides':
+      return post.data.slides;
+    case 'Video':
+      return post.data.video;
+    default:
+      return '#'; // Fallback URL if field is not recognized
+  }
+};
+---
+
+<div style={{ whiteSpace: 'pre' }}>
+{paddedConference}
+</div>
+<Tag>
+	{post.data.draft && <span class="text-red-500">(Draft) </span>}
+	<a class="cactus-link" data-astro-prefetch target="_blank" href={post.data.doi}>
+	{post.data.title}</a>.{post.data.authors.map((author, index) => (
+    <span key={index}> {author === "Hünkar Can Tunç" ? <strong>{author}</strong> : author}{index < post.data.authors.length - 1 && ", "}</span>
+  ))}.
+	<p> </p>
+  	{post.data.artifactAvailable && <img src="/icons/artifacts_available_v1_1.png"
+										 alt="Artifact Available" class="w-6 h-6 inline mr-2" />}
+	{post.data.artifactFunctional && <img src="/icons/artifacts_evaluated_functional_v1_1.png"
+										 alt="Artifact Functional" class="w-6 h-6 inline mr-2" />}
+	{post.data.artifactReusable && <img src="/icons/artifacts_evaluated_reusable_v1_1.png"
+										 alt="Artifact Available" class="w-6 h-6 inline mr-2" />}
+	{post.data.artifactReproduced && <img src="/icons/results_reproduced_v1_1.png"
+										 alt="Artifact Reproduced" class="w-6 h-6 inline mr-2" />}
+	{post.data.bestpaper && <p class="inline text-red-600 font-bold">Best Paper Award</p>}
+
+
+<div class="flex space-x-1">
+  {buttons.map((button) => {
+    const url = getFieldLink(post, button);
+
+    return (
+      url && (
+        <a
+          href={url} target="_blank"
+          class="border border-blue-500 text-blue-500 text-xs px-1 py-0.5 rounded-md hover:bg-blue-500 hover:text-white transition-colors duration-200 mt-1"
+        >
+          {button.label}
+        </a>
+      )
+    );
+  })}
+</div>
+</Tag>

@@ -1,0 +1,79 @@
+---
+import SocialList from "@/components/SocialList.astro";
+import PostPreview from "@/components/blog/PostPreview.astro";
+import { getAllPosts, sortMDByDate } from "@/data/post";
+import PageLayout from "@/layouts/Base.astro";
+
+const MAX_POSTS = 20;
+const allPosts = await getAllPosts();
+const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS);
+
+const cactusTech: { desc: string; href: string; title: string }[] = [
+	{
+		title: "CSSTs",
+		desc: "General purpose data structure.",
+		href: "",
+	},
+	{
+		title: "SyncPD",
+		desc: "Dynamic deadlock detector.",
+		href: "",
+	},
+	{
+		title: "Tree clocks",
+		desc: "Drop-in replacement for vector clocks.",
+		href: "",
+	},
+	{
+		title: "DyNetiKat",
+		desc: "Network verification tool.",
+		href: "",
+	},
+];
+---
+
+<PageLayout meta={{ title: "Home" }}>
+	<section>
+		<h1 class="title mb-6"></h1>
+		<p class="mb-4">
+			I’m a PhD candidate at Aarhus University where I’m advised by <a class="cactus-link" target="_blank" href={`https://cs.au.dk/~pavlogiannis/`}>Andreas Pavlogiannis</a>. I’m interested in developing program analysis techniques for improving the quality of concurrent software systems.
+		</p>
+		<SocialList />
+	</section>
+	<section aria-label="Blog post list" class="mt-16">
+		<h2 class="title mb-4 text-xl">Publications</h2>
+		<ul class="space-y-4">
+			{
+				allPostsByDate.map((p) => (
+					<li class="grid gap-2 sm:grid-cols-[auto_1fr] sm:[&_q]:col-start-2">
+						<PostPreview post={p} />
+					</li>
+				))
+			}
+		</ul>
+	</section>
+
+	 <!--
+	 	<section class="mt-16">
+		<h2 class="title mb-4 text-xl">Software</h2>
+		<dl class="space-y-4">
+			{
+				cactusTech.map(({ desc, href, title }) => (
+					<div class="flex flex-col gap-2 sm:flex-row">
+						<dt>
+							<span class="flex">
+								<a class="cactus-link" href={href} rel="noopener noreferrer" target="_blank">
+									{title}
+								</a>
+								:
+							</span>
+						</dt>
+						<dd>{desc}</dd>
+					</div>
+				))
+			}
+		</dl>
+	</section>
+	 -->
+
+</PageLayout>

@@ -1,0 +1,154 @@
+---
+import aboutImg from "@/assets/avatar.png";
+import { Image } from "astro:assets";
+
+import { menuLinks } from "@/site-config";
+
+import Search from "../Search.astro";
+import ThemeToggle from "../ThemeToggle.astro";
+
+const url = new URL(Astro.request.url);
+
+import { Icon } from "astro-icon/components";
+
+/**
+	Uses https://www.astroicon.dev/getting-started/
+	Find icons via guide: https://www.astroicon.dev/guides/customization/#open-source-icon-sets
+	Only installed pack is: @iconify-json/mdi
+*/
+const socialLinks: {
+	friendlyName: string;
+	isWebmention?: boolean;
+	link: string;
+	name: string;
+}[] = [
+	{
+		friendlyName: "E-mail",
+		link: "hcantunc@gmail.com",
+		name: "mdi:email",
+	},
+	{
+		friendlyName: "Google Scholar",
+		link: "https://scholar.google.com/citations?user=G_EapFcAAAAJ&hl=en",
+		name: "google-scholar-square",
+	},
+	{
+		friendlyName: "Github",
+		link: "https://github.com/hcantunc",
+		name: "mdi:github",
+	},
+];
+---
+
+<style>
+  .circle-image {
+    width: 200px; /* Adjust the width as needed */
+    height: 200px; /* Adjust the height as needed */
+    border-radius: 50%; /* This makes the image circular */
+    object-fit: cover; /* Ensures the image covers the circle without stretching */
+    overflow: hidden;
+  }
+</style>
+
+<header class="group relative mb-8 flex items-center -ml-4 sm:-ml-2" id="main-header">
+<div class="flex items-center">
+  <a
+    aria-current={url.pathname === "/" ? "page" : false}
+    class="inline-flex items-center grayscale hover:filter-none -ml-2"
+  >
+    <Image
+	  class="circle-image"
+      alt="logo"
+      src={aboutImg}
+    />
+    <div class="flex flex-col justify-center ml-6">
+      <span class="text-xl font-bold sm:text-2xl">Hünkar Can Tunç</span>
+		<ul class="flex flex-1 items-center gap-x-2 sm:flex-initial">
+			{
+				socialLinks.map(({ friendlyName, isWebmention, link, name }) => (
+					<li class="flex">
+						<a
+							class="inline-block p-1 sm:hover:text-link"
+							href={link}
+							rel={`noopener noreferrer ${isWebmention ? "me authn" : ""}`}
+							target="_blank"
+						>
+							<Icon aria-hidden="true" class="h-6 w-6" focusable="false" name={name} />
+							<span class="sr-only">{friendlyName}</span>
+						</a>
+					</li>
+				))
+			}
+		</ul>
+    </div>
+  </a>
+</div>
+	<Search />
+	<ThemeToggle />
+	<mobile-button>
+		<button
+			aria-expanded="false"
+			aria-haspopup="menu"
+			aria-label="Open main menu"
+			class="group relative ms-4 h-7 w-7 sm:invisible sm:hidden"
+			id="toggle-navigation-menu"
+			type="button"
+		>
+			<svg
+				aria-hidden="true"
+				class="absolute start-1/2 top-1/2 h-full w-full -translate-x-1/2 -translate-y-1/2 transition-all group-aria-expanded:scale-0 group-aria-expanded:opacity-0"
+				fill="none"
+				focusable="false"
+				id="line-svg"
+				stroke="currentColor"
+				stroke-width="1.5"
+				viewBox="0 0 24 24"
+				xmlns="http://www.w3.org/2000/svg"
+			>
+				<path d="M3.75 9h16.5m-16.5 6.75h16.5" stroke-linecap="round" stroke-linejoin="round"
+				></path>
+			</svg>
+			<svg
+				aria-hidden="true"
+				class="absolute start-1/2 top-1/2 h-full w-full -translate-x-1/2 -translate-y-1/2 scale-0 text-accent opacity-0 transition-all group-aria-expanded:scale-100 group-aria-expanded:opacity-100"
+				class="text-accent"
+				fill="none"
+				focusable="false"
+				id="cross-svg"
+				stroke="currentColor"
+				stroke-width="1.5"
+				viewBox="0 0 24 24"
+				xmlns="http://www.w3.org/2000/svg"
+			>
+				<path d="M6 18L18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round"></path>
+			</svg>
+		</button>
+	</mobile-button>
+</header>
+
+<script>
+	import { toggleClass } from "@/utils";
+
+	class MobileNavBtn extends HTMLElement {
+		private headerEl: HTMLElement;
+		private menuOpen: boolean;
+		private mobileButtonEl: HTMLButtonElement;
+
+		toggleMobileMenu = () => {
+			toggleClass(this.headerEl, "menu-open");
+			this.menuOpen = !this.menuOpen;
+			this.mobileButtonEl.setAttribute("aria-expanded", this.menuOpen.toString());
+		};
+
+		constructor() {
+			super();
+			this.headerEl = document.getElementById("main-header")!;
+			this.mobileButtonEl = this.querySelector("button") as HTMLButtonElement;
+			this.menuOpen = false;
+
+			this.mobileButtonEl.addEventListener("click", this.toggleMobileMenu);
+		}
+	}
+
+	customElements.define("mobile-button", MobileNavBtn);
+</script>

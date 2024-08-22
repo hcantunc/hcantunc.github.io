@@ -1,0 +1,26 @@
+---
+import { Icon } from "astro-icon/components";
+
+/**
+	Uses https://www.astroicon.dev/getting-started/
+	Find icons via guide: https://www.astroicon.dev/guides/customization/#open-source-icon-sets
+	Only installed pack is: @iconify-json/mdi
+*/
+const socialLinks: {
+	friendlyName: string;
+	isWebmention?: boolean;
+	link: string;
+	name: string;
+}[] = [
+	{
+		friendlyName: "Github",
+		link: "https://github.com/hcantunc",
+		name: "mdi:github",
+	},
+	{
+		friendlyName: "Google Scholar",
+		link: "https://scholar.google.com/citations?user=G_EapFcAAAAJ&hl=en",
+		name: "mdi:scholar",
+	},
+];
+---
