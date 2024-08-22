@@ -60,9 +60,16 @@ const getFieldLink = (post : any, button : any) => {
 <Tag>
 	{post.data.draft && <span class="text-red-500">(Draft) </span>}
 	<a class="cactus-link" data-astro-prefetch target="_blank" href={post.data.doi}>
-	{post.data.title}</a>.{post.data.authors.map((author : string, index : number) => (
-    <span key={index}> {author === "Hünkar Can Tunç" ? <strong>{author}</strong> : author}{index < post.data.authors.length - 1 && ", "}</span>
-  ))}.
+	{post.data.title}</a>.{
+    post.data.authors.map((author: string, index: number) => (
+    <React.Fragment key={index}>
+      <span>
+        {author === "Hünkar Can Tunç" ? <strong>{author}</strong> : author}
+        {index < post.data.authors.length - 1 && ", "}
+      </span>
+    </React.Fragment>
+))
+  }.
 	<p> </p>
   	{post.data.artifactAvailable && <img src="/icons/artifacts_available_v1_1.png"
 										 alt="Artifact Available" class="w-6 h-6 inline mr-2" />}
