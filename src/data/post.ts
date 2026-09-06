@@ -15,9 +15,11 @@ export function getPostSortDate(post: CollectionEntry<"post">) {
 		: new Date(post.data.publishDate);
 }
 
-/** sort post by date (by siteConfig.sortPostsByUpdatedDate), desc.*/
+/** Sort by explicit priority first, then by date descending. */
 export function sortMDByDate(posts: CollectionEntry<"post">[]) {
 	return posts.sort((a, b) => {
+		const priorityDifference = b.data.sortPriority - a.data.sortPriority;
+		if (priorityDifference !== 0) return priorityDifference;
 		const aDate = getPostSortDate(a).valueOf();
 		const bDate = getPostSortDate(b).valueOf();
 		return bDate - aDate;

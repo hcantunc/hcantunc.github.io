@@ -18,6 +18,7 @@ const post = defineCollection({
 				.optional(),
 			description: z.string().min(0).max(160),
 			conference: z.string(),
+			sortPriority: z.number().default(0),
 			authors: z.array(z.string()),
 			doi: z.string(),
 			draft: z.boolean().default(false),
